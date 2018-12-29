@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+{% block heading %}
+<div class="header">
+  Welcome  {{username}}!
+</div>
+<form action="{{url_for('sessionDestroy')}}" method="post">
+  <button  class="logout" type="submit" name="Log out">Log out</button>
+</form>
+{% endblock %}
+
+{% block body %}
+<div class="search">
+<h1>Search city name or Zip code</h1>
+
+<form action="{{url_for('location')}}" method="post">
+
+  <input list="locationsInfo" name="locationsInfo" class="input">
+  <datalist id="locationsInfo">
+    {% for location in locations%}
+      <option value="{{location.zipcode}}">
+    {% endfor %}
+    {% for location in locations%}
+      <option value="{{location.city}}">
+    {% endfor %}
+  </datalist>
+  <div class="btn_src_div">
+      <button type="submit" name="button_submit" class="btn_src">Search</button>
+  </div>
+</form>
+
+
+
+
+</div>
+{% endblock %}

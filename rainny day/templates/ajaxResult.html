@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+{% block heading %}
+ send weather request
+{% endblock %}
+
+{% block body %}
+<li>weather summary ------ {{weather.summary}}</li>
+<li>weather temperature ------ {{weather["temperature"]}}</li>
+<li>weather humidity ------ {{weather["humidity"]}}</li>
+<li>weather pressure ------ {{weather["pressure"]}}</li>
+<li>weather windSpeed ------ {{weather["windSpeed"]}}</li>
+<li>weather visibility ------ {{weather["visibility"]}}</li>
+
+information date :  {{weather["time"]}}
+
+{% endblock %}

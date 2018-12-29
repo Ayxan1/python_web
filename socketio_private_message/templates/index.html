@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+    box-sizing: border-box;
+}
+
+/* Create three equal columns that floats next to each other */
+.column {
+    float: left;
+    width: 33.33%;
+    padding: 10px;
+    min-height: 500px; /* Should be removed. Only for demonstration */
+}
+
+.row1 .column {
+    float: left;
+    width: 50%;
+    padding: 10px;
+    min-height: 500px; /* Should be removed. Only for demonstration */
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+</style>
+</head>
+<body>
+
+<h2>Three Equal Columns</h2>
+
+<div class="row">
+  <div class="column" style="background-color:#aaa;">
+    <br><br>
+
+    <input type="text" id="username">
+    <button id="send_username">Login</button>
+
+    <br><br><br><br>
+
+<div style="display:none;" id="group_area">
+
+  <!--  <button type="button" id="joinToGroup">joinToGroup</button> -->
+  <div style="display:none;" id="group_messaging_form">
+    <input type="text" id="group_message">
+    <button type="button" id="group1" value="group1">send to group 1</button>
+  </div>
+    <br><br><br><br>
+    ____________________
+    <br><br><br><br>
+    <!--  <button type="button" id="showList">Show Group List</button> -->
+    <br>Groups<br>
+    <select style="display:none;" id="groupList">
+    </select>
+    <br><br>
+    <button style="display:none;" type="button" id="joinThisGroup">join this group</button>
+
+</div>
+
+  </div>
+
+  <div class="column" style="background-color:#bbb;">
+    <br><br>
+
+    Send To: <input type="text" id="send_to_username">
+    Message: <input type="text" id="private_message">
+    <button id="send_private_message">Send</button>
+
+  </div>
+
+  <div class="column" style="background-color:#ccc;">
+    <br><br>
+    <p style=" float: left;" id="logginedUser">
+      User
+    </p>
+    <br><br>
+    <p style=" float: left;" id="logginedGroup">
+
+    </p>
+
+
+    <br><br><br><br><br>
+
+    <input type="text" id="newGroupName">
+    <button type="button" id="newGroupNameAdd">add new group</button>
+    <br><br><br><br>
+    <p style="color:red; display:none;" id="alertConflictGroupName">there is one group with this name please change group name</p>
+  </div>
+</div>
+
+<hr>
+
+<div class="row1">
+
+  <div class="column" style="background-color:#aaa;">
+    ______________________Group messages____________________
+    <ul id="listGroup">
+
+    </ul>
+  </div>
+
+  <div class="column" style="background-color:#bbb;">
+    ________________________Private messages_________________
+    <ul id="listPrivate">
+
+    </ul>
+  </div>
+
+</div>
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+    <script
+              src="http://code.jquery.com/jquery-3.2.1.min.js"
+              integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+              crossorigin="anonymous"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>

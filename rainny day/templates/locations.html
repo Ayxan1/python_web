@@ -1,0 +1,75 @@
+{% extends "layout.html" %}
+{% block heading %}
+
+    {% if showSignUp==1%}
+    <form class="" action="{{url_for('mainPage')}}" method="get">
+      <button type="submit" name="signup">Sign Up</button>
+    </form>
+    {% elif showLogOut==1%}
+    <form class="" action="{{url_for('sessionDestroy')}}" method="post">
+      <button type="submit" name="logout">Log out</button>
+    </form>
+    {% endif %}
+
+{% endblock %}
+
+{% block body %}
+  <ul>
+          <h1>{{location.city}}</h1>
+          <li>ZipCode ------ {{location.zipcode}}</li>
+          <li>State ------ {{location.state}}</li>
+          <li>Latitude ------ {{location.lat}}</li>
+          <li>Longitude ------ {{location.long}}</li>
+          <li>Population ------ {{location.population}}</li>
+          _________________________________________________
+          <br><br>
+          <li>weather summary ------ {{weather.summary}}</li>
+          <li>weather temperature ------ {{weather["temperature"]}}</li>
+          <li>weather humidity ------ {{weather["humidity"]}}</li>
+          <li>weather pressure ------ {{weather["pressure"]}}</li>
+          <li>weather windSpeed ------ {{weather["windSpeed"]}}</li>
+          <li>weather visibility ------ {{weather["visibility"]}}</li>
+
+          information date :  {{weather["time"]}}
+
+{% if isUser==1%}
+          <br><br><br>
+          {% if permitionOfComment==1 %}
+
+          ___________________Write Comment To This Location______________________________
+          <br><br><br>
+
+
+          <form action="{{url_for('comment',location_id=location.id,user_id=user_id)}}" method="post">
+            <textarea name="comment" rows="8" cols="80"></textarea>
+            <button type="submit">Send</button>
+          </form>
+          <br><br><br>
+          <hr>
+
+          {% else %}
+            You have already wrote a comment for this location
+          {% endif %}
+
+<br><br>
+
+__________________________________________
+________###################_______________
+          <br><br><br>
+          Others' comments
+          <br><br><br>
+
+
+          {% for com in comment %}
+          <br>
+          _______________________________________
+            <h4>username -- {{com.first_name}}</h4>
+            <p>{{com.comment}}</p>
+          _______________________________________
+            <br><hr><br>
+          {% endfor %}
+
+  </ul>
+{%else%}
+{%endif%}
+{% endblock %}
